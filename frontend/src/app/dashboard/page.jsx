@@ -1,23 +1,27 @@
 'use client'
-import Cookies from 'js-cookie';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { Card, CardContent } from "@/components/ui/card"
 
-export default function Dashboard() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const token = Cookies.get('token');
-    if (!token) router.push('/login');
-  }, []);
-
+export default function DashboardPage() {
   return (
-    <div style={{ padding: 30 }}>
-      <h1>🏋️‍♂️ Tableau de bord Admin</h1>
-      <p>Bienvenue, Ziyed !</p>
-      <button onClick={() => { Cookies.remove('token'); router.push('/login'); }}>
-        Déconnexion
-      </button>
+    <div className="grid grid-cols-3 gap-6">
+      <Card>
+        <CardContent className="p-6">
+          <h3 className="text-gray-600 text-sm">Membres actifs</h3>
+          <p className="text-3xl font-bold text-gym-primary">128</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardContent className="p-6">
+          <h3 className="text-gray-600 text-sm">Nouvelles inscriptions</h3>
+          <p className="text-3xl font-bold text-gym-primary">24</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardContent className="p-6">
+          <h3 className="text-gray-600 text-sm">Revenus mensuels</h3>
+          <p className="text-3xl font-bold text-gym-primary">2,340 DT</p>
+        </CardContent>
+      </Card>
     </div>
-  );
+  )
 }
