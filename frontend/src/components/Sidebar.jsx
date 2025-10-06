@@ -24,11 +24,11 @@ export function Sidebar() {
           </button>
 
           <button
-            onClick={() => router.push('/dashboard/members')}
+            onClick={() => router.push('/users')}
             className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2563eb] hover:text-white transition-colors duration-200"
           >
             <Users size={20} />
-            <span>Membres</span>
+            <span>Users</span>
           </button>
         </nav>
       </div>
