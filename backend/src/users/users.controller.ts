@@ -1,14 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Put,
-  Delete,
-  Body,
-  Param,
-  HttpCode,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, HttpCode, HttpStatus } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.schema';
 
@@ -16,11 +6,17 @@ import { User } from './user.schema';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  // ✅ ROUTE DASHBOARD AVANT LE PARAMÈTRE ID
+  @Get('dashboard-stats')
+  @HttpCode(HttpStatus.OK)
+  async getDashboardStats() {
+    return this.usersService.getDashboardStats();
+  }
+
   // ➕ Créer un utilisateur
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() data: Partial<User>) {
-    // Le service gère déjà la validation du phone unique
     return this.usersService.create(data);
   }
 

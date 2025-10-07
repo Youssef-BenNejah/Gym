@@ -10,10 +10,7 @@ export class User extends Document {
   prenom: string;
 
   @Prop({ required: true })
-  phone: string; // Numéro de téléphone
-
-  @Prop()
-  photo?: string; // Photo encodée en base64 ou URL (optionnelle)
+  phone: string;
 
   @Prop({ required: true })
   dateDebut: Date;
@@ -27,6 +24,16 @@ export class User extends Document {
     default: 'en cours',
   })
   statut: string;
+
+  @Prop()
+  photo?: string;
+
+  // ✅ Ajout explicite pour TypeScript
+  @Prop()
+  createdAt?: Date;
+
+  @Prop()
+  updatedAt?: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

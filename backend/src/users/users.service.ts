@@ -52,4 +52,58 @@ export class UsersService {
     if (!result) throw new NotFoundException('Utilisateur introuvable');
     return { message: 'Utilisateur supprimé avec succès' };
   }
+
+  // ✅ Nouvelle méthode : met à jour les statuts expirés
+   async updateExpiredUsers(): Promise<void> {
+    const now = new Date();
+
+    // Tous les utilisateurs dont la dateFin est passée ET statut = payé ou en cours
+    await this.userModel.updateMany(
+      {
+        statut: { $in: ['payé', 'en cours'] },
+        dateFin: { $lt: now },
+      },
+      {
+        $set: { statut: 'non payé' },
+      },
+    );
+  }
+
+  
+async getDashboardStats() {
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 1);
+
+  const users = await this.userModel.find().exec();
+
+  const total = users.length;
+  const payes = users.filter((u) => u.statut === 'payé').length;
+  const nonPayes = users.filter((u) => u.statut === 'non payé').length;
+  const enCours = users.filter((u) => u.statut === 'en cours').length;
+
+  const moisLabels = [
+    "Janv", "Févr", "Mars", "Avr", "Mai", "Juin",
+    "Juil", "Août", "Sept", "Oct", "Nov", "Déc"
+  ];
+  const inscritsParMois = Array(12).fill(0);
+
+  for (const u of users) {
+    if (u.createdAt) {
+      const created = new Date(u.createdAt);
+      if (created >= startOfYear && created.getFullYear() === now.getFullYear()) {
+        inscritsParMois[created.getMonth()]++;
+      }
+    }
+  }
+
+  return {
+    total,
+    payes,
+    nonPayes,
+    enCours,
+    labels: moisLabels,
+    inscritsParMois,
+  };
+}
+
 }
