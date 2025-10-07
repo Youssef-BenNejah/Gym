@@ -44,7 +44,7 @@ export default function UpdateUserForm({ user, onUpdated, onCancel }) {
           <X size={20} />
         </button>
 
-        <h2 className="text-2xl font-bold text-indigo-700 mb-6">✏️ Modifier l'utilisateur</h2>
+        <h2 className="text-2xl font-bold text-orange-700 mb-6">✏️ Modifier l'utilisateur</h2>
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input className="input" placeholder="Nom" value={form.nom} onChange={(e) => handleChange("nom", e.target.value)} />
@@ -76,7 +76,10 @@ export default function UpdateUserForm({ user, onUpdated, onCancel }) {
 
           <div className="md:col-span-2 flex justify-end gap-3 mt-4">
             <button type="button" onClick={onCancel} className="btn-secondary">Annuler</button>
-            <button type="submit" className="btn-primary" disabled={loading}>
+            <button type="submit"  disabled={loading}   className={`bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700
+              text-white font-semibold px-6 py-2.5 rounded-xl shadow-md transition-all
+              ${loading ? 'opacity-70 cursor-not-allowed' : 'hover:scale-105'}`}
+>
               {loading ? "Mise à jour..." : "Mettre à jour"}
             </button>
           </div>

@@ -81,7 +81,7 @@ export default function UsersPage() {
 
         {/* ======= CONTROLS ======= */}
         <div className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-md rounded-2xl p-5 mb-8 flex flex-col gap-5">
-          
+
           {/* === Ligne 1 : Recherche + Ajouter === */}
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
             {/* 🔍 Barre de recherche */}
@@ -99,14 +99,16 @@ export default function UsersPage() {
             {/* ➕ Bouton Ajouter */}
             <button
               onClick={() => {
-                setShowAdd(true)
-                setEditing(null)
+                setShowAdd(true);
+                setEditing(null);
               }}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700
-                         text-white font-semibold flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl shadow-lg transition-all hover:scale-105"
+              className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700
+             text-white font-semibold flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl shadow-lg 
+             transition-all hover:scale-105"
             >
               <UserPlus size={18} /> Ajouter
             </button>
+
           </div>
 
           {/* === Ligne 2 : Filtres === */}
@@ -181,6 +183,6 @@ export default function UsersPage() {
         </div>
       </div>
     </div>
-    
+
   )
 }
