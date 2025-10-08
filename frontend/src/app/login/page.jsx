@@ -28,7 +28,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2563eb] via-[#1e3a8a] to-[#0f172a] flex items-center justify-center px-4">
+<div className="min-h-screen bg-gradient-to-br from-orange-400 via-orange-500 to-amber-600 flex items-center justify-center px-4">
       <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 w-full max-w-md animate-fadeIn">
         {/* Logo */}
         <div className="flex items-center justify-center mb-6">
