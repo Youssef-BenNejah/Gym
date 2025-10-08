@@ -32,7 +32,7 @@ export default function LoginPage() {
       <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 w-full max-w-md animate-fadeIn">
         {/* Logo */}
         <div className="flex items-center justify-center mb-6">
-          <Dumbbell size={32} className="text-[#2563eb] mr-2" />
+          <Dumbbell size={32} className="text-orange-500 mr-2" />
           <h1 className="text-3xl font-extrabold text-gray-800">Gym Admin</h1>
         </div>
 
@@ -73,10 +73,11 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#2563eb] hover:bg-[#1e40af] text-white font-semibold py-2 rounded-lg shadow-lg transition-all duration-200"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg shadow-lg transition-all duration-200"
           >
             {loading ? 'Connexion...' : 'Se connecter'}
           </button>
+
         </form>
 
         {/* Footer */}

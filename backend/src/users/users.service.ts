@@ -32,19 +32,31 @@ export class UsersService {
   }
 
   // ✏️ UPDATE
-  async update(id: string, data: Partial<User>): Promise<User> {
-    // Si le phone change, vérifier qu’il n’appartient pas à un autre user
-    if (data.phone) {
-      const duplicate = await this.userModel.findOne({ phone: data.phone, _id: { $ne: id } });
-      if (duplicate) {
-        throw new BadRequestException('Ce numéro est déjà utilisé par un autre utilisateur.');
-      }
+// ✏️ UPDATE
+async update(id: string, data: Partial<User>): Promise<User> {
+  // Si le phone change, vérifier qu’il n’appartient pas à un autre user
+  if (data.phone) {
+    const duplicate = await this.userModel.findOne({ phone: data.phone, _id: { $ne: id } });
+    if (duplicate) {
+      throw new BadRequestException('Ce numéro est déjà utilisé par un autre utilisateur.');
     }
-
-    const updated = await this.userModel.findByIdAndUpdate(id, data, { new: true });
-    if (!updated) throw new NotFoundException('Utilisateur introuvable');
-    return updated;
   }
+
+  // ⚙️ Si la dateFin est passée → statut devient "non payé"
+  if (data.dateFin) {
+    const now = new Date();
+    const dateFin = new Date(data.dateFin);
+
+    if (dateFin < now) {
+      data.statut = 'non payé';
+    }
+  }
+
+  const updated = await this.userModel.findByIdAndUpdate(id, data, { new: true });
+  if (!updated) throw new NotFoundException('Utilisateur introuvable');
+
+  return updated;
+}
 
   // ❌ DELETE
   async remove(id: string): Promise<{ message: string }> {
