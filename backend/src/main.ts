@@ -11,13 +11,13 @@ async function bootstrap() {
   // ✅ Active CORS pour ton frontend Next.js
   app.enableCors({
   origin: [
-    'http://localhost:3001',
-    'http://192.168.100.9:3001',
+    'http://localhost:3000',
+    'http://192.168.100.9:3000',
   ],
   credentials: true,
 });
 
-  await app.listen(3000);
-  console.log('✅ Backend NestJS sur http://localhost:3000');
+  await app.listen(5000);
+  console.log('✅ Backend NestJS sur http://localhost:5000');
 }
 bootstrap();
