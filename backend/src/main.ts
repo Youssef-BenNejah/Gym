@@ -3,17 +3,14 @@ import { AppModule } from './app.module';
 import { json, urlencoded } from 'express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   app.use(json({ limit: '300mb' }));
   app.use(urlencoded({ extended: true, limit: '300mb' }));
 
   // ✅ Active CORS pour ton frontend Next.js
   app.enableCors({
-  origin: [
-    'http://localhost:3000',
-    'http://192.168.100.9:3000',
-  ],
+   origin: true,
   credentials: true,
 });
 
